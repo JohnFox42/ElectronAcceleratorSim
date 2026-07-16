@@ -31,3 +31,6 @@ foreach (_file ${macros})
         COPYONLY
     )
 endforeach()
+
+#Setting vscode things
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)

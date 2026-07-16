@@ -1,0 +1,140 @@
+{
+	"abstract" : true,
+	"artifacts" : 
+	[
+		{
+			"path" : "C:/Qt/6.11.1/msvc2022_64/bin/Qt6Cored.dll"
+		},
+		{
+			"path" : "C:/Qt/6.11.1/msvc2022_64/lib/Qt6Cored.lib"
+		}
+	],
+	"backtrace" : 9,
+	"backtraceGraph" : 
+	{
+		"commands" : 
+		[
+			"add_library",
+			"include",
+			"find_package",
+			"__find_dependency_common",
+			"find_dependency",
+			"set_target_properties"
+		],
+		"files" : 
+		[
+			"C:/Qt/6.11.1/msvc2022_64/lib/cmake/Qt6Core/Qt6CoreTargets.cmake",
+			"C:/Qt/6.11.1/msvc2022_64/lib/cmake/Qt6Core/Qt6CoreConfig.cmake",
+			"C:/Program Files/CMake/share/cmake-4.3/Modules/CMakeFindDependencyMacro.cmake",
+			"C:/Users/jef60/Geant4/geant4-v11.4.1-install/lib/cmake/Geant4/Geant4Config.cmake",
+			"CMakeLists.txt"
+		],
+		"nodes" : 
+		[
+			{
+				"file" : 4
+			},
+			{
+				"command" : 2,
+				"file" : 4,
+				"line" : 6,
+				"parent" : 0
+			},
+			{
+				"file" : 3,
+				"parent" : 1
+			},
+			{
+				"command" : 4,
+				"file" : 3,
+				"line" : 369,
+				"parent" : 2
+			},
+			{
+				"command" : 3,
+				"file" : 2,
+				"line" : 125,
+				"parent" : 3
+			},
+			{
+				"command" : 2,
+				"file" : 2,
+				"line" : 93,
+				"parent" : 4
+			},
+			{
+				"file" : 1,
+				"parent" : 5
+			},
+			{
+				"command" : 1,
+				"file" : 1,
+				"line" : 57,
+				"parent" : 6
+			},
+			{
+				"file" : 0,
+				"parent" : 7
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 59,
+				"parent" : 8
+			},
+			{
+				"command" : 5,
+				"file" : 0,
+				"line" : 61,
+				"parent" : 8
+			}
+		]
+	},
+	"codemodelVersion" : 
+	{
+		"major" : 2,
+		"minor" : 10
+	},
+	"id" : "Qt6::Core::@6890427a1f51a3e7e1df",
+	"imported" : true,
+	"interfaceCompileDependencies" : 
+	[
+		{
+			"backtrace" : 10,
+			"id" : "Qt6::Platform::@6890427a1f51a3e7e1df"
+		},
+		{
+			"backtrace" : 10,
+			"id" : "WrapAtomic::WrapAtomic::@6890427a1f51a3e7e1df"
+		}
+	],
+	"interfaceLinkLibraries" : 
+	[
+		{
+			"backtrace" : 10,
+			"id" : "Qt6::Platform::@6890427a1f51a3e7e1df"
+		},
+		{
+			"backtrace" : 10,
+			"fragment" : "mpr"
+		},
+		{
+			"backtrace" : 10,
+			"fragment" : "userenv"
+		},
+		{
+			"backtrace" : 10,
+			"id" : "WrapAtomic::WrapAtomic::@6890427a1f51a3e7e1df"
+		}
+	],
+	"local" : true,
+	"name" : "Qt6::Core",
+	"nameOnDisk" : "Qt6Cored.dll",
+	"paths" : 
+	{
+		"build" : ".",
+		"source" : "."
+	},
+	"sources" : [],
+	"type" : "SHARED_LIBRARY"
+}

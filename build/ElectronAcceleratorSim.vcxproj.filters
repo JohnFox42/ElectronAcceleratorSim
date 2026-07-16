@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="C:\Users\jef60\Geant4\ElectronAcceleratorSim\ElectronAcceleratorSim.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\jef60\Geant4\ElectronAcceleratorSim\src\ActionInitialization.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\jef60\Geant4\ElectronAcceleratorSim\src\DetectorConstruction.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\jef60\Geant4\ElectronAcceleratorSim\src\EventAction.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\jef60\Geant4\ElectronAcceleratorSim\src\PhysicsList.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\jef60\Geant4\ElectronAcceleratorSim\src\PrimaryGeneratorAction.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\jef60\Geant4\ElectronAcceleratorSim\src\RunAction.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\jef60\Geant4\ElectronAcceleratorSim\src\SteppingAction.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="C:\Users\jef60\Geant4\ElectronAcceleratorSim\include\ActionInitialization.hh">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\jef60\Geant4\ElectronAcceleratorSim\include\DetectorConstruction.hh">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\jef60\Geant4\ElectronAcceleratorSim\include\EventAction.hh">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\jef60\Geant4\ElectronAcceleratorSim\include\GlobalVariables.hh">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\jef60\Geant4\ElectronAcceleratorSim\include\PhysicsList.hh">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\jef60\Geant4\ElectronAcceleratorSim\include\PrimaryGeneratorAction.hh">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\jef60\Geant4\ElectronAcceleratorSim\include\RunAction.hh">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\jef60\Geant4\ElectronAcceleratorSim\include\SteppingAction.hh">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\jef60\Geant4\ElectronAcceleratorSim\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{B1FB98B5-4E06-31B5-A74A-F3E4CEDE115F}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{FD3D7088-5EE4-3098-864E-4463C2875BB9}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

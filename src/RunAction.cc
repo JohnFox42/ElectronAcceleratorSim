@@ -42,7 +42,7 @@ void RunAction::BeginOfRunAction(const G4Run* run)
     auto analysisManager = G4RootAnalysisManager::Instance();
 
     //Open an output file
-    G4String fileName = "BasicDetector.root";
+    G4String fileName = "ElectronAcceleratorSim.root";
     analysisManager->OpenFile(fileName);
 
     //Reset accumulables to the initial values

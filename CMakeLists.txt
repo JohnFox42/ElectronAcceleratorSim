@@ -1,6 +1,6 @@
 # (1)
 cmake_minimum_required(VERSION 3.16...3.27)
-project(BasicDetector)
+project(ElectronAcceleratorSim)
 
 #(2)
 find_package(Geant4 REQUIRED ui_all vis_all)

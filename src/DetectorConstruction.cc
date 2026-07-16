@@ -59,8 +59,11 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
     //Creating the logical germanium detector and filling with germanium
     G4LogicalVolume* GeDetectorLog = new G4LogicalVolume(GeDetectorTube,Ge,"GeDetector");
 
-    //Assigning the detector volume so we can tell where energy depositions occur
-    fScoringVolume = GeDetectorLog;
+    //Assigning a detector volume to germanium
+    fGeDetector = GeDetectorLog;
+
+    //Assiging a detector volume to silicon
+    fSiDetector = SiDetectorLog; 
     
 
     //Placing the world volume

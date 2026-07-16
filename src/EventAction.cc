@@ -24,15 +24,6 @@ namespace BasicDetector
         {
             analysisManager->FillH1(1,deposit);
         } 
-        //debugging code
-        /*
-        if (fPhotonEdep.size()!=0)
-        {
-            G4cout << "End of event: map size = " << fPhotonEdep.size() << G4endl;
-            G4cout << "End of event: Histogram size = " << analysisManager->GetH1(1)->entries() << G4endl;
-        }
-        */
-
         fPhotonEdep.clear();
         
         auto eventID = event->GetEventID();

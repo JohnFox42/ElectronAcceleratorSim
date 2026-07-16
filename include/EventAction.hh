@@ -21,8 +21,13 @@ namespace BasicDetector
 
         void BeginOfEventAction(const G4Event*) override;
         void EndOfEventAction(const G4Event*) override;
+        
+        void AddSiEdep(G4double edep);
 
         std::map<G4int, G4double> fPhotonEdep {}; 
+
+        protected:
+        G4double SiEdep = 0.;
 
         private:
         RunAction* fRunAction = nullptr;

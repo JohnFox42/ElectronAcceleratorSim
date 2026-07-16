@@ -45,6 +45,19 @@ namespace BasicDetector
                 }
             }
         }
+
+        //Gets the detector construction
+        auto detectorConstruction = static_cast<const DetectorConstruction*>(G4RunManager::GetRunManager()->GetUserDetectorConstruction());
+
+        //Gets pre and post step volumes
+        auto* preVolume = step->GetPreStepPoint()->GetPhysicalVolume();
+        auto* postVolume = step->GetPostStepPoint()->GetPhysicalVolume();
+
+        //Check to see if a track entered the Si detector and record energy deposition
+        if (preVolume->GetLogicalVolume() == detectorConstruction->GetSiDetector())
+        {
+            fEventAction->AddSiEdep(step->GetTotalEnergyDeposit());
+        }
         
         //getting the tracks
         auto* track = step->GetTrack();
@@ -54,25 +67,15 @@ namespace BasicDetector
         {
             if (track->GetCreatorProcess() && track->GetCreatorProcess()->GetProcessName()=="eBrem")
             {
-                //Gets the detector construction
-                auto detectorConstruction = static_cast<const DetectorConstruction*>(G4RunManager::GetRunManager()->GetUserDetectorConstruction());
-
-                //Gets the scoring volume i.e. the detector
-                G4LogicalVolume* scoringVolume = detectorConstruction->GetScoringVolume();
-
-                //Gets pre and post step volumes
-                auto* preVolume = step->GetPreStepPoint()->GetPhysicalVolume();
-                auto* postVolume = step->GetPostStepPoint()->GetPhysicalVolume();
-
                 //Check to see if this is the photons first step within the Germanium
-                if (preVolume != postVolume && postVolume && postVolume->GetLogicalVolume() == scoringVolume)
+                if (preVolume != postVolume && postVolume && postVolume->GetLogicalVolume() == detectorConstruction->GetGeDetector())
                 {
                     fEventAction->fPhotonEdep[track->GetTrackID()] = 0;
                     analysisManager->FillH1(2,step->GetPreStepPoint()->GetKineticEnergy());
                 }
 
                 //Check the current volume and record the deposition energy
-                if (preVolume && preVolume->GetLogicalVolume() == scoringVolume)
+                if (preVolume && preVolume->GetLogicalVolume() == detectorConstruction->GetGeDetector())
                 {
                     auto it = fEventAction->fPhotonEdep.find(track->GetTrackID());
                     if (it != fEventAction->fPhotonEdep.end())

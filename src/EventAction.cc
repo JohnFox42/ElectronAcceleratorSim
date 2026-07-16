@@ -14,6 +14,12 @@ namespace BasicDetector
 
     void EventAction::BeginOfEventAction(const G4Event*)
     {
+        SiEdep = 0.;
+    }
+
+    void EventAction::AddSiEdep(G4double edep)
+    {
+        SiEdep += edep; 
     }
 
     void EventAction::EndOfEventAction(const G4Event* event)
@@ -24,16 +30,10 @@ namespace BasicDetector
         {
             analysisManager->FillH1(1,deposit);
         } 
-        //debugging code
-        /*
-        if (fPhotonEdep.size()!=0)
-        {
-            G4cout << "End of event: map size = " << fPhotonEdep.size() << G4endl;
-            G4cout << "End of event: Histogram size = " << analysisManager->GetH1(1)->entries() << G4endl;
-        }
-        */
-
         fPhotonEdep.clear();
+
+        //Fill SiEdep histogram
+        analysisManager->FillH1(3,SiEdep);
         
         auto eventID = event->GetEventID();
         if (eventID % 100000 == 0)

@@ -23,6 +23,7 @@ RunAction::RunAction()
     analysisManager->CreateH1("SiKinE","Energy of Bremsstrahlung Photons",80,0,400*keV);
     analysisManager->CreateH1("Edep","Energy Deposited in Ge",80.,0.,400.*keV);
     analysisManager->CreateH1("GeKinE","Energy of Photons Impacting Ge Detector",80.,0.,400.*keV);
+    analysisManager->CreateH1("SiEdep","Energy Deposited in Si",100.,0.,500.*keV);
 
     //Register accumulable to the accumulable manager
     G4AccumulableManager* accumulableManager = G4AccumulableManager::Instance();

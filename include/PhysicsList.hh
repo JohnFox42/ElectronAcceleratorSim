@@ -6,6 +6,7 @@
 
 #include "G4VModularPhysicsList.hh"
 #include "G4EmPenelopePhysics.hh"
+#include "G4StepLimiterPhysics.hh"
 
 namespace BasicDetector
 {

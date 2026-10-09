@@ -5,6 +5,7 @@
 #include "GlobalVariables.hh"
 #include "Randomize.hh"
 #include "G4AccumulableManager.hh"
+#include "G4Threading.hh"
 #include <cmath>
 #include <typeinfo>
 
@@ -22,12 +23,13 @@ RunAction::RunAction()
     //Creating histograms
     analysisManager->CreateH1("SiKinE","Energy of Bremsstrahlung Photons",80,0,400*keV);
     analysisManager->CreateH1("Edep","Energy Deposited in Ge",80.,0.,400.*keV);
-    analysisManager->CreateH1("GeKinE","Energy of Photons Impacting Ge Detector",80.,0.,400.*keV);
+    analysisManager->CreateH1("GeKinE","Energy of Photons Impacting Ge Detector",400.,0.,400.*keV);
     analysisManager->CreateH1("SiEdep","Energy Deposited in Si",100.,0.,500.*keV);
 
     //Register accumulable to the accumulable manager
     G4AccumulableManager* accumulableManager = G4AccumulableManager::Instance();
     accumulableManager->Register(fBremCount);
+    accumulableManager->Register(fCoinCount);
 }
 
 void RunAction::BeginOfRunAction(const G4Run* run)
@@ -42,7 +44,7 @@ void RunAction::BeginOfRunAction(const G4Run* run)
     auto analysisManager = G4RootAnalysisManager::Instance();
 
     //Open an output file
-    G4String fileName = "ElectronAcceleratorSim.root";
+    G4String fileName = "spectrum.root";
     analysisManager->OpenFile(fileName);
 
     //Reset accumulables to the initial values
@@ -55,6 +57,11 @@ void RunAction::IterateBremCount()
     ++fBremCount;
 }
 
+void RunAction::IterateCoinCount()
+{
+    ++fCoinCount;
+}
+
 void RunAction::EndOfRunAction(const G4Run* run)
 {
     auto analysisManager = G4RootAnalysisManager::Instance();
@@ -65,6 +72,7 @@ void RunAction::EndOfRunAction(const G4Run* run)
 
     //Get Total count of bremsstrahlung events
     const G4int TotalBremCount = fBremCount.GetValue();
+    const G4int TotalCoinCount = fCoinCount.GetValue();
 
     //Output Statistics
     if (IsMaster())
@@ -87,8 +95,8 @@ void RunAction::EndOfRunAction(const G4Run* run)
         G4double GeSigma = sqrt(GeProb*(1-GeProb)/TotalBremCount);
         G4cout << "with standard deviation: " << GeSigma*100<< '%' << '\n';
 
-        //Debugging code
-        G4cout << "End of Run: Deposition Counts = " << analysisManager->GetH1(1)->entries() << G4endl;
+        //Coincidence stats
+        G4cout << "End of Run: Total Coincidence Count = " << TotalCoinCount << '\n';
     }
     //write to the analysis file
     analysisManager->Write();

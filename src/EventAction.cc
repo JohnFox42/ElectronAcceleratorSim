@@ -26,9 +26,16 @@ namespace BasicDetector
     {
         //Record the energy deposition in the Ge detector and output to a root file
         auto analysisManager = G4RootAnalysisManager::Instance();
+        G4double TotalDeposit = 0;
         for (auto const& [key,deposit] : fPhotonEdep)
         {
             analysisManager->FillH1(1,deposit);
+            TotalDeposit += deposit;
+        }
+        G4double CoincidenceE = TotalDeposit + SiEdep;
+        if (TotalDeposit!= 0 && CoincidenceE>=380*keV && CoincidenceE<= 401*keV && TotalDeposit>=70*keV && TotalDeposit<= 130*keV)
+        {
+            fRunAction->IterateCoinCount();
         } 
         fPhotonEdep.clear();
 

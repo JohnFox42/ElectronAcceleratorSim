@@ -7,6 +7,7 @@
 #include "G4SystemOfUnits.hh"
 #include "G4Tubs.hh"
 #include "G4VPhysicalVolume.hh"
+#include "G4UserLimits.hh"
 
 namespace BasicDetector
 {
@@ -58,6 +59,10 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
 
     //Creating the logical germanium detector and filling with germanium
     G4LogicalVolume* GeDetectorLog = new G4LogicalVolume(GeDetectorTube,Ge,"GeDetector");
+
+    //Set max step inside Ge detector
+    auto* UserLimits = new G4UserLimits(0.01*mm,DBL_MAX,DBL_MAX,DBL_MAX,DBL_MAX);
+    GeDetectorLog->SetUserLimits(UserLimits);
 
     //Assigning a detector volume to germanium
     fGeDetector = GeDetectorLog;

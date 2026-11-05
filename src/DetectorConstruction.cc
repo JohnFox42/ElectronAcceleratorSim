@@ -70,6 +70,20 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
     //Assiging a detector volume to silicon
     fSiDetector = SiDetectorLog; 
     
+    //Adding the aluminum beamline housing 
+    G4Tubs* BeamlineHousing = new G4Tubs("BeamlineHousing",50.8*mm,52.8*mm,0.20635*m,0*deg,360*deg);
+
+    //Creating Aluminum
+    G4Material* Al = nist->FindOrBuildMaterial("G4_Al");
+
+    //Creating the logical housing and filling with aluminum
+    G4LogicalVolume* BeamlineHousingLog = new G4LogicalVolume(BeamlineHousing,Al,"BeamlineHousing");
+
+    //Adding the beamline housing cap
+    G4Tubs* BeamlineHousingCap = new G4Tubs("BeamlineHousingCap",0,52.8*mm,3*mm,0*deg,360*deg);
+
+    //Creating the logical cap and filling with aluminum
+    G4LogicalVolume* BeamlineHousingCapLog = new G4LogicalVolume(BeamlineHousingCap,Al,"BeamlineHousingCap");
 
     //Placing the world volume
     G4VPhysicalVolume* worldPhys = new G4PVPlacement(0,G4ThreeVector(0,0,0),worldLog,"World",nullptr,false,0);
@@ -79,6 +93,12 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
 
     //Placing the germanium detector 
     G4VPhysicalVolume* GeDetectorPhys = new G4PVPlacement(0,G4ThreeVector(0,0,-13.55*cm),GeDetectorLog,"GeDetector",worldLog,false,0);
+
+    //Placing the aluminum housing
+    G4VPhysicalVolume* BeamlineHousingPhys = new G4PVPlacement(0,G4ThreeVector(0,0,0.1873*m),BeamlineHousingLog,"BeamlineHousing",worldLog,false,0);
+
+    //Placing the aluminum housing cap
+    G4VPhysicalVolume* BeamlineHousingCapPhys = new G4PVPlacement(0,G4ThreeVector(0,0,-1.57*cm),BeamlineHousingCapLog,"BeamlineHousingCap",worldLog,false,0);
 
     return worldPhys;
 }

@@ -31,24 +31,24 @@ int main(int argc, char** argv)
     runManager->Initialize();
 
     //Visualization Manager
-    G4VisManager* visManager = new G4VisExecutive();
-    visManager->Initialize();
+    //G4VisManager* visManager = new G4VisExecutive();
+    //visManager->Initialize();
 
     //Set up the UI
-    G4UIExecutive* ui  = new G4UIExecutive(argc,argv,"qt");
+    //G4UIExecutive* ui  = new G4UIExecutive(argc,argv,"qt");
     
     //Execute visualization macro
-    G4UImanager::GetUIpointer()->ApplyCommand("/control/execute vis.mac");
+    //G4UImanager::GetUIpointer()->ApplyCommand("/control/execute vis.mac");
 
     //Execute run macro
-    //G4UImanager::GetUIpointer()->ApplyCommand("/control/execute run.mac");
+    G4UImanager::GetUIpointer()->ApplyCommand("/control/execute run.mac");
 
     //Start the UI session
-    ui->SessionStart();
+    //ui->SessionStart();
 
     //job termination
-    delete ui;
-    delete visManager;
+    //delete ui;
+    //delete visManager;
     delete runManager;
     return 0;
 }

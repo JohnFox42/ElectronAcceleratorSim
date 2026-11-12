@@ -91,14 +91,21 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
     //Placing the silicon detector at the origin
     G4VPhysicalVolume* SiDetectorPhys = new G4PVPlacement(0,G4ThreeVector(0,0,0),SiDetectorLog,"SiDetector",worldLog,false,0);
 
-    //Placing the germanium detector 
-    G4VPhysicalVolume* GeDetectorPhys = new G4PVPlacement(0,G4ThreeVector(0,0,-13.55*cm),GeDetectorLog,"GeDetector",worldLog,false,0);
+    //Creating the rotation matrix for the Ge Detector
+    G4double RotationMag = 0*deg;
+    G4RotationMatrix Rot = G4RotationMatrix();
+    Rot.rotateY(RotationMag);
 
+
+    //Placing the germanium detector 
+    G4VPhysicalVolume* GeDetectorPhys = new G4PVPlacement(G4Transform3D(Rot,G4ThreeVector(-13.55*sin(RotationMag)*cm,0,-13.55*cos(RotationMag)*cm)),GeDetectorLog,"GeDetector",worldLog,false,0);
+
+    //Commenting out for basic comparison to isotropic napkin math
     //Placing the aluminum housing
-    G4VPhysicalVolume* BeamlineHousingPhys = new G4PVPlacement(0,G4ThreeVector(0,0,0.1873*m),BeamlineHousingLog,"BeamlineHousing",worldLog,false,0);
+    //G4VPhysicalVolume* BeamlineHousingPhys = new G4PVPlacement(0,G4ThreeVector(0,0,0.1873*m),BeamlineHousingLog,"BeamlineHousing",worldLog,false,0);
 
     //Placing the aluminum housing cap
-    G4VPhysicalVolume* BeamlineHousingCapPhys = new G4PVPlacement(0,G4ThreeVector(0,0,-1.57*cm),BeamlineHousingCapLog,"BeamlineHousingCap",worldLog,false,0);
+    //G4VPhysicalVolume* BeamlineHousingCapPhys = new G4PVPlacement(0,G4ThreeVector(0,0,-1.57*cm),BeamlineHousingCapLog,"BeamlineHousingCap",worldLog,false,0);
 
     return worldPhys;
 }

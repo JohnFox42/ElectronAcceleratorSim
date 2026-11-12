@@ -30,6 +30,8 @@ RunAction::RunAction()
     G4AccumulableManager* accumulableManager = G4AccumulableManager::Instance();
     accumulableManager->Register(fBremCount);
     accumulableManager->Register(fCoinCount);
+    accumulableManager->Register(fEscapeCount);
+    accumulableManager->Register(fThreshCount);
 }
 
 void RunAction::BeginOfRunAction(const G4Run* run)
@@ -62,6 +64,16 @@ void RunAction::IterateCoinCount()
     ++fCoinCount;
 }
 
+void RunAction::IterateEscapeCount()
+{
+    ++fEscapeCount;
+}
+
+void RunAction::IterateThreshCount()
+{
+    ++fThreshCount;
+}
+
 void RunAction::EndOfRunAction(const G4Run* run)
 {
     auto analysisManager = G4RootAnalysisManager::Instance();
@@ -73,6 +85,8 @@ void RunAction::EndOfRunAction(const G4Run* run)
     //Get Total count of bremsstrahlung events
     const G4int TotalBremCount = fBremCount.GetValue();
     const G4int TotalCoinCount = fCoinCount.GetValue();
+    const G4int TotalEscapeCount = fEscapeCount.GetValue();
+    const G4int TotalThreshCount = fThreshCount.GetValue();
 
     //Output Statistics
     if (IsMaster())
@@ -97,6 +111,20 @@ void RunAction::EndOfRunAction(const G4Run* run)
 
         //Coincidence stats
         G4cout << "End of Run: Total Coincidence Count = " << TotalCoinCount << '\n';
+
+        //Escape Stats
+        G4cout << "End of Run: Total Escape Count = " << TotalEscapeCount << '\n';
+        G4double EscapeProb = static_cast<G4double>(TotalEscapeCount)/static_cast<G4double>(run->GetNumberOfEvent());
+        G4cout << "End of Run: Escape Probability = " << EscapeProb*100 << '%' << '\n';
+        G4double EscapeSigma = sqrt(EscapeProb*(1-EscapeProb)/static_cast<G4double>(run->GetNumberOfEvent()));
+        G4cout << "End of Run: with standard deviation = " << EscapeSigma*100 << '%' << '\n';
+
+        //Threshold counts assuming 100% Ge Efficiency
+        G4cout << "End of Run: Total Threshold Photons: " << TotalThreshCount << '\n';
+        G4double ThreshProb = static_cast<G4double>(TotalThreshCount)/static_cast<G4double>(TotalEscapeCount);
+        G4cout << "End of Run: Total Threshold Probability = " << ThreshProb*100 << '%' << '\n';
+        G4double ThreshSigma = sqrt(ThreshProb*(1-ThreshProb)/static_cast<G4double>(TotalEscapeCount));
+        G4cout << "End of Run: with standard deviation = " << ThreshSigma*100 << '%' <<'\n';
     }
     //write to the analysis file
     analysisManager->Write();

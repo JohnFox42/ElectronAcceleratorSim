@@ -72,6 +72,10 @@ namespace BasicDetector
                 {
                     fEventAction->fPhotonEdep[track->GetTrackID()] = 0;
                     analysisManager->FillH1(2,step->GetPreStepPoint()->GetKineticEnergy());
+                    if (step->GetPreStepPoint()->GetKineticEnergy() >= 30*keV)
+                    {
+                        fRunAction->IterateThreshCount();
+                    }
                 }
 
                 //Check the current volume and record the deposition energy
@@ -92,6 +96,13 @@ namespace BasicDetector
                         G4cout << "Current Kinetic Energy: " << step->GetPreStepPoint()->GetKineticEnergy() << G4endl;
                         G4cout << "Current edep: " << step->GetTotalEnergyDeposit() << G4endl;
                     }
+                }
+
+                //Check if photon is 10cm away from Si detector & more than 30keV
+                if (track->GetPosition().mag() >= 5*cm && !(fEventAction->ReturnEscapeBool()) && step->GetPreStepPoint()->GetKineticEnergy() >= 30*keV)
+                {
+                    fRunAction->IterateEscapeCount();
+                    fEventAction->UpdateEscapeBool(true);
                 }
             }
         }

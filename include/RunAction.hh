@@ -21,11 +21,15 @@ namespace BasicDetector
         void EndOfRunAction(const G4Run*) override;
         void IterateBremCount();
         void IterateCoinCount();
+        void IterateEscapeCount();
+        void IterateThreshCount();
 
         private:
         //declaring accumulable for bremcounts
         G4Accumulable<G4int> fBremCount = 0;
         G4Accumulable<G4int> fCoinCount = 0;
+        G4Accumulable<G4int> fEscapeCount = 0;
+        G4Accumulable<G4int> fThreshCount = 0;
     };
 }
 

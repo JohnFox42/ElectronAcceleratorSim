@@ -15,11 +15,17 @@ namespace BasicDetector
     void EventAction::BeginOfEventAction(const G4Event*)
     {
         SiEdep = 0.;
+        EscapeBool = false;
     }
 
     void EventAction::AddSiEdep(G4double edep)
     {
         SiEdep += edep; 
+    }
+
+    void EventAction::UpdateEscapeBool(bool escape)
+    {
+        EscapeBool = escape;
     }
 
     void EventAction::EndOfEventAction(const G4Event* event)

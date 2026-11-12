@@ -23,11 +23,14 @@ namespace BasicDetector
         void EndOfEventAction(const G4Event*) override;
         
         void AddSiEdep(G4double edep);
+        void UpdateEscapeBool(bool escape);
+        bool ReturnEscapeBool(){return EscapeBool;}
 
         std::map<G4int, G4double> fPhotonEdep {}; 
 
         protected:
         G4double SiEdep = 0.;
+        G4bool EscapeBool = false;
 
         private:
         RunAction* fRunAction = nullptr;
